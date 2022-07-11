@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { signin } from '../../lib/api/auth'
 import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box, { BoxProps } from '@mui/material/Box';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 
 export const SignIn  = () => {
   const initialState = {
@@ -30,16 +34,38 @@ export const SignIn  = () => {
 
   return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <p>email</p>
-        <input type="text" name="email" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}  />
-        <p>password</p>
-        <input type="text" name="password" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)} />
-        <div>
-          <input type="submit" value="login" />
-        </div>
-      </form>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+          textAlign: 'center',
+        }}
+      >
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            style={{ width: '100%', margin: '5px'}}
+            required
+            name="email"
+            label="email"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+          />
+          <br />
+          <TextField
+            style={{ width: '100%', margin: '5px'}}
+            required
+            name="password"
+            label="password"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+          />
+          <br />
+          <Button type='submit' variant="contained">Login</Button>
+        </form>
+      </Box>
     </>
   )
 }

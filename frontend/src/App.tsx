@@ -1,18 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom'
-import { useNavigate } from "react-router-dom";
+import { Header } from './components/Layout/Header';
+import './App.css'
 
 const App: React.FC = () => {
-  const navigate = useNavigate()
-
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/', { replace: true });
-  }
   return (
     <>
-      <button type="button" onClick={handleLogout}>logout</button>
-      <h1>aaa</h1>
+      <Header />
       <Outlet />
     </>
   );
