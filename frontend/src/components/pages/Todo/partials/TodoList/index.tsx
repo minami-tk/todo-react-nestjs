@@ -1,13 +1,16 @@
 import React from 'react'
-import { Todo } from '../../interfaces'
-import { deleteTodo, getTodoAll, updateTodoStatus } from '../../lib/api/todos'
+import { Todo } from '../../../../../interfaces'
+import { deleteTodo, updateTodoStatus } from '../../../../../lib/api/todos'
+import { Presenter } from './Presenter'
 
-interface TodoItemProps {
-  todo: Todo
+interface TodoListProps {
+  todos: Todo[]
   setTodos: Function
+  showTodos: boolean
+  title: string
 }
 
-export const DoneItem: React.FC<TodoItemProps> = ({todo, setTodos}) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, showTodos, title }) => {
   const handleDeleteTodo = async (id: string) => {
     try {
       const res = await deleteTodo(id)
@@ -32,17 +35,14 @@ export const DoneItem: React.FC<TodoItemProps> = ({todo, setTodos}) => {
       console.error(error)
     }
   }
-  
+
   return (
-    <tr>
-      <td>{todo.title}</td>
-      <td>{todo.description}</td>
-      <td>
-        <button onClick={() => handleUpdateTodoStatus(todo._id || '0')}>undo</button>
-      </td>
-      <td>
-        <button onClick={() => handleDeleteTodo(todo._id || '0')}>Delete</button>
-      </td>
-    </tr>
+    <Presenter 
+      title={title} 
+      todos={todos}
+      showTodos={showTodos}
+      handleUpdateTodoStatus={handleUpdateTodoStatus} 
+      handleDeleteTodo={handleDeleteTodo}
+    />
   )
 }

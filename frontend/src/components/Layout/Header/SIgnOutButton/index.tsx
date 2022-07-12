@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
-export const SignInButton = () => {
+export const SignOutButton = () => {
   const navigate = useNavigate()
 
   const handleSignOut = () => {
@@ -9,8 +10,7 @@ export const SignInButton = () => {
     navigate('/', { replace: true });
   }
 
-
   return (
-    <button type="button" onClick={handleSignOut}>SignOut</button>
+    <Button color="inherit" onClick={handleSignOut}>SignOut</Button>
   )
 }

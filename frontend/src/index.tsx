@@ -7,25 +7,24 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { SignIn } from './components/Auth/SignIn'
-import TodoIndex from './components/Todo';
-import { SignUp } from './components/Auth/SignUp';
+import { SignIn } from './components/pages/SingIn'
+import TodoIndex from './components/pages/Todo';
+import { SignUp } from './components/pages/SignUp';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}>
-          <Route index element={<SignIn/>} />
-          <Route path="/todo" element={<TodoIndex />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-    
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />}>
+            <Route index element={<SignIn/>} />
+            <Route path="/todo" element={<TodoIndex />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

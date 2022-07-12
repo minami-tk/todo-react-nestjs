@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { signup } from '../../lib/api/auth'
-import { useNavigate } from "react-router-dom";
+import { signup } from '../../../lib/api/auth'
+import { useNavigate } from "react-router-dom"
+import { Presenter } from './Presenter';
 
 export const SignUp  = () => {
   const initialState = {
@@ -29,21 +30,11 @@ export const SignUp  = () => {
       console.error(error)
     }
   }
-
   return (
-    <>
-      <h1>SignUp</h1>
-      <form onSubmit={handleSubmit}>
-        <p>name</p>
-        <input type="text" name="name" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}  />
-        <p>email</p>
-        <input type="text" name="email" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}  />
-        <p>password</p>
-        <input type="text" name="password" onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)} />
-        <div>
-          <input type="submit" value="login" />
-        </div>
-      </form>
-    </>
+    <Presenter
+      handleSubmit={handleSubmit}
+      onChange={onChange}
+      formData={formData}
+    />
   )
 }

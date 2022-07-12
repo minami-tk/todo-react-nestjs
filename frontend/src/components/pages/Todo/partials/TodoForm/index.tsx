@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Todo } from '../../interfaces'
-import { createTodo } from '../../lib/api/todos'
+import { Todo } from '../../../../../interfaces'
+import { createTodo } from '../../../../../lib/api/todos'
+import { Presenter } from './Presenter'
 
 interface TodoFormProps {
     todos: Todo[]
@@ -29,14 +30,10 @@ export const TodoForm: React.FC<TodoFormProps> = ({ todos, setTodos }) => {
   }
 
   return (
-    <form onSubmit={handleCreateTodo}>
-      <p>title</p>
-      <input type="text" name="title" value={formData.title} onChange={(e) => onChange(e)} />
-      <p>description</p>
-      <input type="text" name="description" value={formData.description} onChange={(e) => onChange(e)} />
-      <div>
-        <input type="submit" value="add" disabled={!formData.title || !formData.description} />
-      </div>
-    </form>
+    <Presenter
+      onChange={onChange}
+      handleCreateTodo={handleCreateTodo}
+      formData={formData}
+    />
   )
 }
