@@ -21,7 +21,7 @@ require('dotenv').config();
     MongooseModule.forRoot(process.env.MONGODB),
     JwtModule.register({
       secret,
-      signOptions: { expiresIn: '2h' },
+      signOptions: { expiresIn: '1d' },
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),

@@ -54,6 +54,7 @@ export const Presenter = (props: Props) => {
             required
             name="password"
             label="password"
+            type="password"
             value={formData.password}
             onChange={onChange}
           />

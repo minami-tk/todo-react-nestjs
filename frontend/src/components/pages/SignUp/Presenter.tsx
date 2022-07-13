@@ -67,6 +67,7 @@ export const Presenter: React.FC<Props> = (props: Props) => {
                 required
                 name="password"
                 label="password"
+                type="password"
                 value={formData.password}
                 onChange={onChange}
               />

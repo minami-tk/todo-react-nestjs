@@ -12,7 +12,6 @@ export const SignIn  = () => {
   const navigate = useNavigate()
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
     setFormData({...formData, [e.target.name]: e.target.value})
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,12 +19,15 @@ export const SignIn  = () => {
     try {
       const res = await signin(formData)
       if(res.status === 200) {
+        console.log('Successfully')
         localStorage.setItem('token', res.data.token)
-        navigate('/todo', { replace: true });
+        navigate('/todo', { replace: true })
       } else {
+        localStorage.removeItem('token')
         console.error(res.data.message)
       }
     } catch (error) {
+      localStorage.removeItem('token')
       console.error(error)
     }
   }

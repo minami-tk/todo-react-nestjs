@@ -1,8 +1,10 @@
 import client from "./client";
 import { Todo } from '../../interfaces/index'
+import { headers } from './config'
+import axios from 'axios'
 
-export const getTodoAll = () => {
-  return client.get('/todo')
+export const getTodoAll = async () => {
+  return await client.get('/todo', headers)
 }
 
 export const createTodo = (todo: Todo) => {

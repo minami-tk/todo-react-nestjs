@@ -7,6 +7,7 @@ type FormProps = {
   name: string
   label: string
   value: string
+  type?: string
   autoFocus?: boolean
   onChange?: (e: any) => void
 }
@@ -15,6 +16,7 @@ export const InputText: React.FC<FormProps> = ({
   name,
   label,
   value,
+  type = 'text',
   autoFocus = false,
   onChange
 }) => {
@@ -26,6 +28,7 @@ export const InputText: React.FC<FormProps> = ({
       label={label}
       name={name}
       value={value}
+      type={type}
       autoFocus={autoFocus}
       onChange={onChange}
     />

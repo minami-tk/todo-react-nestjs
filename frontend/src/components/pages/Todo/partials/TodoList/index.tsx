@@ -5,7 +5,7 @@ import { Presenter } from './Presenter'
 
 interface TodoListProps {
   todos: Todo[]
-  setTodos: Function
+  setTodos: React.Dispatch<React.SetStateAction<any>>
   showTodos: boolean
   title: string
 }
@@ -16,7 +16,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, showTodos, 
       const res = await deleteTodo(id)
 
       if(res?.status === 200) {
-        setTodos((oldTodos: Todo[]) => oldTodos.filter((todo: Todo) => todo._id !== id))
+        setTodos((prev: Todo[]) => prev.filter((todo: Todo) => todo._id !== id))
       } else {
         console.error(res.data.message)
       }
@@ -28,7 +28,10 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, showTodos, 
   const handleUpdateTodoStatus = async (id: string) => {
     try {
       const res = await updateTodoStatus(id)
-      if(res?.status !== 200) {
+
+      if(res?.status === 200) {
+        setTodos(todos.map((todo: Todo) => todo._id === id ? res.data : todo))
+      } else {
         console.error(res.data)
       }
     } catch (error) {
