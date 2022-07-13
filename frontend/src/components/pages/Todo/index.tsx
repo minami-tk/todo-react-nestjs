@@ -4,6 +4,7 @@ import { Todo } from '../../../interfaces';
 import { getTodoAll } from '../../../lib/api/todos';
 import { Presenter } from './Presenter';
 import  Axios from 'axios'
+import { removeAuthenticated } from '../../../lib/auth/authStatus';
 
 const TodoIndex: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -14,7 +15,7 @@ const TodoIndex: React.FC = () => {
   }, [])
 
   const redirectToSignInPage = () => {
-    localStorage.removeItem('token')
+    removeAuthenticated()
     navigate('/', { replace: true })
   }
 

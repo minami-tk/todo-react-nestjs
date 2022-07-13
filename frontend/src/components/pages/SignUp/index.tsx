@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { signup } from '../../../lib/api/auth'
 import { useNavigate } from "react-router-dom"
 import { Presenter } from './Presenter';
+import { removeAuthenticated, setAuthenticated } from '../../../lib/auth/authStatus';
 
 export const SignUp  = () => {
   const initialState = {
@@ -21,13 +22,15 @@ export const SignUp  = () => {
       const res = await signup(formData)
 
       if(res.status === 201) {
-        localStorage.setItem('token', res.data.token)
+        await setAuthenticated(res.data.token)
         navigate('/todo', { replace: true });
       } else {
         console.error(res.data.message)
+        removeAuthenticated()
       }
     } catch (error) {
       console.error(error)
+      removeAuthenticated()
     }
   }
   return (

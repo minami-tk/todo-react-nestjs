@@ -1,20 +1,38 @@
 import client from "./client";
 import { Todo } from '../../interfaces/index'
-import { headers } from './config'
-import axios from 'axios'
 
 export const getTodoAll = async () => {
-  return await client.get('/todo', headers)
+  return await client.get('/todo', {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
+  
 }
 
-export const createTodo = (todo: Todo) => {
-  return client.post('/todo', todo)
+export const createTodo = async (todo: Todo) => {
+  return await client.post('/todo', todo, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
 }
 
-export const updateTodoStatus = (id: string) => {
-  return client.put(`/todo/status/${id}`)
+export const updateTodoStatus = async (id: string) => {
+  return await client.put(`/todo/status/${id}`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  })
 }
 
-export const deleteTodo = (id: string) => {
-  return client.delete(`/todo/${id}`)
+export const deleteTodo = async (id: string) => {
+  // TODO: なぜかレスポンスが帰ってこない
+  client.delete(`/todo/${id}`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  }).then((res) => {
+    return res
+  })
 }

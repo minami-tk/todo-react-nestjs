@@ -21,17 +21,11 @@ export const TodoForm: React.FC<TodoFormProps> = ({ todos, setTodos }) => {
       const res = await createTodo(formData)
       if(res.status === 200) {
         setTodos([...todos, res.data])
+        setFormData(initialState)
       } else {
         console.error(res.data.message)
       }
     } catch (error) {
-      if(error instanceof Error){
-        console.log(error.message)
-      }else if(typeof error === 'string'){
-        console.log(error)
-      }else{
-        console.log("unexpected error")
-      }
       console.error(error)
     }
   }

@@ -11,15 +11,15 @@ interface TodoListProps {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, showTodos, title }) => {
-  const handleDeleteTodo = async (id: string) => {
+  const handleDeleteTodo = async (id: string) => { 
     try {
       const res = await deleteTodo(id)
-
-      if(res?.status === 200) {
-        setTodos((prev: Todo[]) => prev.filter((todo: Todo) => todo._id !== id))
-      } else {
-        console.error(res.data.message)
-      }
+      // TODO: なぜかレスポンスが返ってこない
+      // if(res?.status === 200) {
+        setTodos(todos.filter((todo: Todo) => todo._id !== id))
+      // } else {
+      //   console.error(res.data.message)
+      // }
     } catch (error) {
       console.error(error)
     }

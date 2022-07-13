@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 import { InputText } from '../../uiParts/InputText';
 import { SubmitButton } from '../../uiParts/SubmitButton';
 import Typography from '@mui/material/Typography';
-import { Grid, Theme } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
+import { Grid } from '@mui/material';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import { Copyright } from '../../uiParts/Copyright';
@@ -29,7 +28,6 @@ export const Presenter = (props: Props) => {
   } = props;
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -60,11 +58,6 @@ export const Presenter = (props: Props) => {
           />
           <SubmitButton title="Sign in" />
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
